@@ -24,7 +24,7 @@ class GetRepoController extends Controller
         $err = curl_error($ch);  //if you need
         curl_close($ch);
 
-        return $response;
+        return response()->json(json_decode($response));
     }
 
     /**
