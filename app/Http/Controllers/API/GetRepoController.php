@@ -12,6 +12,17 @@ class GetRepoController extends Controller
      */
     public function index(Request $request, $owner, $repo)
     {
+        $url = 'https://api.github.com/repos/' . $owner . '/' . $repo;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        $err = curl_error($ch);  //if you need
+        curl_close($ch);
+
+        return $response;
     }
 
     /**
