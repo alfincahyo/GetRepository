@@ -12,6 +12,10 @@ class GetRepoController extends Controller
      */
     public function index(Request $request, $owner, $repo)
     {
+
+        // owner : username => alfincahyo
+        // repo : repository name => GetRepository
+
         $url = 'https://api.github.com/repos/' . $owner . '/' . $repo;
         $agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)';
         $ch = curl_init();
@@ -24,7 +28,7 @@ class GetRepoController extends Controller
         $err = curl_error($ch);  //if you need
         curl_close($ch);
 
-        return response()->json(json_decode($response));
+        return response()->json($response);
     }
 
     /**
